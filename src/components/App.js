@@ -6,7 +6,7 @@ import Footer from './Footer';
 import Sub from '../subtitle/sub';
 import clamp from 'lodash/clamp';
 import { secondToTime, notify } from '../utils';
-import { getSubFromVttUrl, vttToUrlUseWorker } from '../subtitle';
+import { getSubFromVttUrl,getVtt, vttToUrl, vttToUrlUseWorker } from '../subtitle';
 import Storage from '../utils/storage';
 import isEqual from 'lodash/isEqual';
 import NProgress from 'nprogress';
@@ -38,8 +38,8 @@ export default function() {
 
     // All options
     const [options, setOptions] = useState({
-        videoUrl: '/sample.mp4',
-        subtitleUrl: '/sample.vtt',
+        videoUrl: window.DEFAULT_VIDEO_URL??data.videoUrl??'/sample888.mp4',
+        subtitleUrl: window.DEFAULT_SUBTITLE_URL??data.subtitleUrl??'/sample8.vtt',
         helpDialog: false,
         donateDialog: false,
         uploadDialog: false,
@@ -93,13 +93,13 @@ export default function() {
 
     // Initialize subtitles from url or storage
     const initSubtitles = useCallback(async () => {
-        const storageSubs = storage.get('subtitles');
-        if (storageSubs && storageSubs.length) {
-            updateSubtitles(storageSubs.map(item => new Sub(item.start, item.end, item.text)));
-        } else {
-            const subs = await getSubFromVttUrl(options.subtitleUrl);
-            updateSubtitles(subs);
-        }
+     
+        //always fetch srt/vtt from URL
+        const vttText = await getVtt(options.subtitleUrl);
+        const subtitleUrl = vttToUrl(vttText);
+        updateSubtitles(await getSubFromVttUrl(subtitleUrl));
+
+
     }, [options.subtitleUrl, updateSubtitles]);
 
     // Run only once
