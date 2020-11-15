@@ -119,10 +119,22 @@ export default function (props) {
                 <Logo href="/">
                     <i className="icon-cc"></i>
                 </Logo>
-                <Menu onClick={() => props.setOption({ uploadDialog: true })}>
+                {/* <Menu onClick={() => props.setOption({ uploadDialog: true })}>
                     <i className="icon-upload"></i>
                     <Translate value="open" />
+                </Menu> */}
+
+                <Menu
+                    onClick={() => {
+                        if (window.confirm(t('clear-warning'))) {
+                            props.cleanSubtitles();
+                        }
+                    }}
+                >
+                    <i className="icon-trash-empty"></i>
+                    <Translate value="clear" />
                 </Menu>
+                
                 <Menu onClick={() => downloadFile(vttToUrl(subToVtt(props.subtitles)), `${Date.now()}.vtt`)}>
                     <i className="icon-download"></i>
                     <Translate value="save" />
@@ -145,19 +157,16 @@ export default function (props) {
                     <i className="icon-help-circled"></i>
                     <Translate value="help" />
                 </Menu>
-                <Menu onClick={() => props.setOption({ donateDialog: true })}>
+                {/* <Menu onClick={() => props.setOption({ donateDialog: true })}>
                     <i className="icon-money"></i>
                     <Translate value="donate" />
                 </Menu>
                 <Menu onClick={() => window.open('https://github.com/zhw2590582/SubPlayer')}>
                     <i className="icon-github"></i> Github
-                </Menu>
+                </Menu> */}
             </Left>
-            <Right>
-                <a className="aimu" href="https://online.aimu-app.com">
-                    <img src="/aimu.png" alt="爱幕" width={15} />
-                    全新版本的字幕编辑器《爱幕》来了，点击马上体验
-                </a>
+            {/* <Right>
+                
                 <I18n>
                     <i className="icon-language"></i>
                     <select value={getName(props.language)} onChange={(event) => props.updateLang(event.target.value)}>
@@ -168,7 +177,7 @@ export default function (props) {
                         ))}
                     </select>
                 </I18n>
-            </Right>
+            </Right> */}
             {props.options.uploadDialog ? (
                 <Dialog title={t('open')} onClose={() => props.setOption({ uploadDialog: false })}>
                     <Upload {...props} />

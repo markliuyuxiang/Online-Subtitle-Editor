@@ -134,7 +134,7 @@ export default function (props) {
         <Footer>
             <div className="timeline-header">
                 <div className="timeline-header-left">
-                    <div className="item">
+                    {/* <div className="item">
                         <div className="name">
                             <Translate value="waveform" />
                         </div>
@@ -150,7 +150,7 @@ export default function (props) {
                                 }}
                             />
                         </div>
-                    </div>
+                    </div> */}
                     <div className="item">
                         <div className="name">
                             <Translate value="size" />
@@ -273,7 +273,7 @@ export default function (props) {
                             )}
                         </div>
                     </div>
-                    <div className="item">
+                    {/* <div className="item">
                         <div
                             style={{ cursor: 'pointer' }}
                             className="value"
@@ -284,7 +284,7 @@ export default function (props) {
                         >
                             <Translate value="export" />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="timeline-body">
