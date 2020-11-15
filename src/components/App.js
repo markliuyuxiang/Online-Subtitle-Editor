@@ -19,7 +19,7 @@ let inTranslation = false;
 const storage = new Storage();
 const worker = new Worker(vttToUrlUseWorker());
 
-export default function() {
+export default function(data) {
     // Player instance
     const [player, setPlayer] = useState(null);
 
