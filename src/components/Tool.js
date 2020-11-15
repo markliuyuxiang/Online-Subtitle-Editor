@@ -216,7 +216,9 @@ export default function ({ player, storage, language, options, setOption, transl
                     <button onClick={() => timeOffsetSubtitles(1)}>+1000ms</button>
                 </div>
             </div>
-            {/* <div className="item">
+
+               {/* 隐藏显示控件 */}
+            <div className="item" style= {{display:'none'}} > 
                 <div className="title">
                     <Translate value="subtitle-style" />
                 </div>
@@ -264,7 +266,7 @@ export default function ({ player, storage, language, options, setOption, transl
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </Tool>
     );
 }
