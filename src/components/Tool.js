@@ -218,7 +218,9 @@ export default function ({ player, storage, language, options, setOption, transl
             </div>
 
                {/* 隐藏显示控件 */}
-            <div className="item" style= {{display:'none'}} > 
+            {/* <div className="item" style= {{display:'none'}} >  */}
+
+            <div className="item"  > 
                 <div className="title">
                     <Translate value="subtitle-style" />
                 </div>

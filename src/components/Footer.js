@@ -131,8 +131,8 @@ export default function (props) {
     });
 
     return (
-        <Footer>
-            <div className="timeline-header">
+        <Footer >
+            <div className="timeline-header" >
                 <div className="timeline-header-left">
                     {/* <div className="item">
                         <div className="name">
@@ -151,7 +151,7 @@ export default function (props) {
                             />
                         </div>
                     </div> */}
-                    <div className="item">
+                    <div className="item"  style={{display:"none"}}>
                         <div className="name">
                             <Translate value="size" />
                         </div>
@@ -159,7 +159,7 @@ export default function (props) {
                             {((fileSize || 0) / 1024 / 1024).toFixed(2)} M
                         </div>
                     </div>
-                    <div className="item">
+                    <div className="item"  style={{display:"none"}}>
                         <div className="name">
                             <Translate value="decode" />
                         </div>
@@ -167,7 +167,7 @@ export default function (props) {
                             {((decodeing || 0) * 100).toFixed(2)}%
                         </div>
                     </div>
-                    <div className="item">
+                    <div className="item"  style={{display:"none"}}>
                         <div className="name">
                             <Translate value="channel" />
                         </div>
@@ -189,7 +189,7 @@ export default function (props) {
                             </select>
                         </div>
                     </div>
-                    <div className="item">
+                    <div className="item"  style={{display:"none"}}>
                         <div className="name">
                             <Translate value="auto-align" />
                         </div>
@@ -203,7 +203,7 @@ export default function (props) {
                             />
                         </div>
                     </div>
-                    <div className="item">
+                    <div className="item"  style={{display:"none"}}>
                         <div className="name">
                             <Translate value="loop-playback" />
                         </div>
@@ -221,13 +221,13 @@ export default function (props) {
                             />
                         </div>
                     </div>
-                    <div className="item">
+                    <div className="item" style={{display:"none"}}>
                         <div className="name">
                             <Translate value="duration" />
                         </div>
                         <div className="value">
                             <input
-                                defaultValue="10"
+                                defaultValue="20"
                                 type="range"
                                 min="5"
                                 max="20"
@@ -235,19 +235,19 @@ export default function (props) {
                                 onChange={(event) => {
                                     if (!wf) return;
                                     wf.setOptions({
-                                        duration: Number(event.target.value || 10),
+                                        duration: Number(event.target.value || 20),
                                     });
                                 }}
                             />
                         </div>
                     </div>
-                    <div className="item">
+                    <div className="item" style={{display:"none"}}> 
                         <div className="name">
                             <Translate value="zoom" />
                         </div>
                         <div className="value">
                             <input
-                                defaultValue="1"
+                                defaultValue="2"
                                 type="range"
                                 min="0.1"
                                 max="2"
@@ -255,13 +255,13 @@ export default function (props) {
                                 onChange={(event) => {
                                     if (!wf) return;
                                     wf.setOptions({
-                                        waveScale: Number(event.target.value || 1),
+                                        waveScale: Number(event.target.value || 2),
                                     });
                                 }}
                             />
                         </div>
                     </div>
-                    <div className="item">
+                    <div className="item"  style={{display:"none"}}>
                         <div className="name">
                             <Translate value="metronome" />
                         </div>
@@ -273,6 +273,15 @@ export default function (props) {
                             )}
                         </div>
                     </div>
+
+                    <div className="item"   >
+                        <div className="name">
+                           Drag subtitle blocks to adjust timing ↓
+                        </div>
+                        
+                    </div>
+
+
                     {/* <div className="item">
                         <div
                             style={{ cursor: 'pointer' }}
@@ -287,7 +296,7 @@ export default function (props) {
                     </div> */}
                 </div>
             </div>
-            <div className="timeline-body">
+            <div className="timeline-body" >
                 {props.player ? (
                     <Waveform
                         {...props}

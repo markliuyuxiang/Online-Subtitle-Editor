@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { names, getName } from '../i18n';
-import Upload from './Upload';
 import Help from './Help';
-import Donate from './Donate';
+import DownloadVideo from './DownloadVideo';
 import Dialog from './Dialog';
 import { downloadFile } from '../utils';
 import { vttToUrl, subToVtt } from '../subtitle';
@@ -119,80 +118,59 @@ export default function (props) {
                 <Logo href="/">
                     <i className="icon-cc"></i>
                 </Logo>
-                {/* <Menu onClick={() => props.setOption({ uploadDialog: true })}>
-                    <i className="icon-upload"></i>
-                    <Translate value="open" />
-                </Menu> */}
 
-                <Menu
-                    onClick={() => {
-                        if (window.confirm(t('clear-warning'))) {
-                            props.cleanSubtitles();
-                        }
-                    }}
+                <Menu 
+                
+                onClick={() => {
+                    if (window.confirm('Are you sure to DISCARD this project?' )) {
+                        window.location.assign('/');  //放弃当前项目，返回首页
+                    }
+                }}
+
                 >
                     <i className="icon-trash-empty"></i>
-                    <Translate value="clear" />
+                    Discard
                 </Menu>
-                
-                <Menu onClick={() => downloadFile(vttToUrl(subToVtt(props.subtitles)), `${Date.now()}.vtt`)}>
-                    <i className="icon-download"></i>
-                    <Translate value="save" />
-                </Menu>
+
+       
                 <Menu onClick={() => props.undoSubtitles()}>
                     <i className="icon-ccw"></i>
                     <Translate value="undo" />
                 </Menu>
-                <Menu
-                    onClick={() => {
-                        if (window.confirm(t('clear-warning'))) {
-                            props.cleanSubtitles();
-                        }
-                    }}
-                >
-                    <i className="icon-trash-empty"></i>
-                    <Translate value="clear" />
-                </Menu>
-                <Menu onClick={() => props.setOption({ helpDialog: true })}>
-                    <i className="icon-help-circled"></i>
-                    <Translate value="help" />
-                </Menu>
-                {/* <Menu onClick={() => props.setOption({ donateDialog: true })}>
-                    <i className="icon-money"></i>
-                    <Translate value="donate" />
-                </Menu>
-                <Menu onClick={() => window.open('https://github.com/zhw2590582/SubPlayer')}>
-                    <i className="icon-github"></i> Github
-                </Menu> */}
-            </Left>
-            {/* <Right>
+
+              
                 
-                <I18n>
-                    <i className="icon-language"></i>
-                    <select value={getName(props.language)} onChange={(event) => props.updateLang(event.target.value)}>
-                        {Object.keys(names).map((key) => (
-                            <option key={key} value={key}>
-                                {names[key]}
-                            </option>
-                        ))}
-                    </select>
-                </I18n>
-            </Right> */}
-            {props.options.uploadDialog ? (
-                <Dialog title={t('open')} onClose={() => props.setOption({ uploadDialog: false })}>
-                    <Upload {...props} />
+                <Menu onClick={() => downloadFile(vttToUrl(subToVtt(props.subtitles)), `${Date.now()}.vtt`)}>
+                    <i className="icon-download"></i>
+                    Download Subtitle File (.vtt)
+                </Menu>
+
+
+         
+ 
+                <Menu style={{color:"pink"}} onClick={() => 
+                    
+                        {
+                        window.subtitles =  props.subtitles;
+                        props.setOption({ downloadvideo: true }) 
+
+                        }
+                    }
+                >
+                    <i className="icon-download"></i>
+                    Download Video
+                </Menu>
+      
+            </Left>
+        
+
+            {props.options.downloadvideo ? (
+                <Dialog title='Download Video' onClose={() => props.setOption({ downloadvideo: false })}>
+                    <DownloadVideo {...props} />
                 </Dialog>
             ) : null}
-            {props.options.helpDialog ? (
-                <Dialog title={t('help')} onClose={() => props.setOption({ helpDialog: false })}>
-                    <Help {...props} />
-                </Dialog>
-            ) : null}
-            {props.options.donateDialog ? (
-                <Dialog title={t('donate')} onClose={() => props.setOption({ donateDialog: false })}>
-                    <Donate {...props} />
-                </Dialog>
-            ) : null}
+
+ 
         </Header>
     );
 }
