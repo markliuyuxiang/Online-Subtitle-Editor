@@ -276,7 +276,7 @@ export default function (props) {
 
                     <div className="item"   >
                         <div className="name">
-                           Drag subtitle blocks to adjust timing ↓
+                           Drag  blocks to adjust subtitle timing ↓
                         </div>
                         
                     </div>

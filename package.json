@@ -5,6 +5,7 @@
   "homepage": "https://subplayer.js.org",
   "dependencies": {
     "artplayer-react": "^3.5.13",
+    "axios": "^0.21.0",
     "duration-time-conversion": "^1.0.1",
     "lodash": "^4.17.20",
     "normalize.css": "^8.0.1",

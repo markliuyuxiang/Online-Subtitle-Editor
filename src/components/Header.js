@@ -7,6 +7,9 @@ import Dialog from './Dialog';
 import { downloadFile } from '../utils';
 import { vttToUrl, subToVtt } from '../subtitle';
 import { t, Translate } from 'react-i18nify';
+import Storage from '../utils/storage';
+
+const storage = new Storage();
 
 const Header = styled.div`
     position: relative;
@@ -152,7 +155,14 @@ export default function (props) {
                     
                         {
                         window.subtitles =  props.subtitles;
-                        props.setOption({ downloadvideo: true }) 
+
+                        //以下4个属性，准备post到后台
+                        window.vttText = subToVtt(props.subtitles);
+                        window.bottom = storage.get('bottom');
+                        window.fontSize = storage.get('fontSize');
+                        window.color = storage.get('color');
+
+                        props.setOption({ downloadvideo: true }) ;
 
                         }
                     }

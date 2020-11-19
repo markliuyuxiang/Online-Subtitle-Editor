@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Translate } from 'react-i18nify';
+import axios from 'axios';
+
 
 const DownloadVideo = styled.div`
     position: relative;
@@ -53,7 +55,27 @@ export default function() {
     return (
         <DownloadVideo>
             <p>
-                 <Button onClick={() => alert(1)}>Burn Subtitles Into Your Video</Button>
+                 <Button onClick={
+                   () => 
+                    {
+
+                      const data = {
+                        vttText: window.vttText,
+                        bottom: window.bottom,
+                        fontSize: window.fontSize,
+                        color: window.color,
+                      };
+                      axios.post(`https://jsonplaceholder.typicode.com/users`, 
+                        { data }
+                      )
+                      .then(res => {
+                        console.log(res);
+                        console.log(res.data);
+                      })
+
+
+                    }
+                }>Burn Subtitles Into Your Video</Button>
             </p>
          
             <p>
